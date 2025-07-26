@@ -1,0 +1,45 @@
+:root {
+  /* Colors */
+  --color-dark: #101828;
+  --color-grey: #8E929A;
+  --color-blue: #3470FF;
+  --color-dark-blue: #0B44CD;
+  --color-steel-grey: #DADDE1;
+  --color-soft-grey: #F2F4F7;
+  --color-neutral-grey: #F7F7F7;
+  --color-white: #FFFFFF;
+
+  /* Container padding */
+  --padding10px: 10px
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  
+  display: block;
+}
+
+button {
+  cursor: pointer;
+}
