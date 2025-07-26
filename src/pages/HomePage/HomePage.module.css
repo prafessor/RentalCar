@@ -1,0 +1,43 @@
+.section {
+  width: 100%;
+  min-height: 500px;
+  height: calc(100vh - 73px);
+
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../../assets/hero-background.png  );
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  color: var(--color-white);
+}
+
+@media screen and (min-resolution: 192dpi) {
+  .section {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../../assets/hero-background@2x.png  );
+  }
+}
+
+.wrapper {
+  min-height: 500px;
+  height: 100%;
+  padding: 60px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.title {
+  padding-bottom: 16px;
+
+  font-size: 60px;
+  line-height: 1.2;
+}
+
+.text {
+  padding-bottom: 40px;
+
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
+}

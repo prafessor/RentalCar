@@ -9,19 +9,20 @@ import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import css from './App.module.css';
 
 export default function App() {
-
   return (
     <>
       <Header />
 
-      <Suspense fallback={null}>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/catalog' element={<CarsPage />} />
-          <Route path='/catalog/:id' element={<DetailsCarPage />} />
-          <Route path='*' element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
+      <main>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/catalog" element={<CarsPage />} />
+            <Route path="/catalog/:id" element={<DetailsCarPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </main>
     </>
-  )
+  );
 }
