@@ -51,6 +51,10 @@ button {
   cursor: pointer;
 }
 
+.section {
+  padding-top: 84px;
+}
+
 .container {
   width: 1220px;
   margin: 0 auto;
