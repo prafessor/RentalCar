@@ -6,7 +6,6 @@ import { selectCars, selectLoading } from '../../redux/cars/selectors';
 export default function Catalog() {
   const cars = useSelector(selectCars);
   const isLoading = useSelector(selectLoading);
-  console.log(cars);
 
   return (
     <div className={css.wrapper}>

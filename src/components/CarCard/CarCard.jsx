@@ -1,18 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 import css from './CarCard.module.css';
-
-// add spaces as thousand separators
-const formatMileage = num => {
-  const numArr = num.toString().split('');
-  const formatedNum = numArr.reduceRight((acc, el, idx) => {
-    const positionFromEnd = numArr.length - idx;
-    const isDivider = positionFromEnd % 3 === 0 && idx !== 0;
-    return (isDivider ? ' ' : '') + el + acc;
-  }, '');
-
-  return formatedNum;
-};
+import { thousandSeparator } from '../../utils/thousandSeparator';
 
 export default function CarCard({ car }) {
   const navigate = useNavigate();
@@ -37,12 +26,12 @@ export default function CarCard({ car }) {
     addressArr[2],
     rentalCompany,
     type,
-    `${formatMileage(mileage)} km`
+    `${thousandSeparator(mileage)} km`,
   ];
 
   const handleButtonClick = () => {
     navigate(`/catalog/${id}`, { replace: true });
-  }
+  };
 
   return (
     <>
@@ -56,12 +45,18 @@ export default function CarCard({ car }) {
       </div>
       <div>
         <div className={css.title_wrapper}>
-          <h2 className={css.title}>{brand} <span className={css.accent}>{model}</span>, {year}</h2>
+          <h2 className={css.title}>
+            {brand} <span className={css.accent}>{model}</span>, {year}
+          </h2>
           <p className={css.price}>{`$${rentalPrice}`}</p>
         </div>
         <ul className={css.tags_list}>
           {carTags.map((el, idx) => {
-            return <li className={css.tag_item} key={idx}>{el}</li>;
+            return (
+              <li className={css.tag_item} key={idx}>
+                {el}
+              </li>
+            );
           })}
         </ul>
       </div>
