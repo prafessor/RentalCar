@@ -21,13 +21,8 @@ export default function CarCard({ car }) {
   } = car;
 
   const addressArr = address.split(',');
-  const carTags = [
-    addressArr[1],
-    addressArr[2],
-    rentalCompany,
-    type,
-    `${thousandSeparator(mileage)} km`,
-  ];
+  const carTags1 = [addressArr[1], addressArr[2], rentalCompany];
+  const carTags2 = [type, `${thousandSeparator(mileage)} km`];
 
   const handleButtonClick = () => {
     navigate(`/catalog/${id}`, { replace: true });
@@ -50,8 +45,17 @@ export default function CarCard({ car }) {
           </h2>
           <p className={css.price}>{`$${rentalPrice}`}</p>
         </div>
-        <ul className={css.tags_list}>
-          {carTags.map((el, idx) => {
+        <ul className={`${css.tags_list} ${css.tags_list_first}`}>
+          {carTags1.map((el, idx) => {
+            return (
+              <li className={css.tag_item} key={idx}>
+                {el}
+              </li>
+            );
+          })}
+        </ul>
+        <ul className={`${css.tags_list} ${css.tags_list_second}`}>
+          {carTags2.map((el, idx) => {
             return (
               <li className={css.tag_item} key={idx}>
                 {el}

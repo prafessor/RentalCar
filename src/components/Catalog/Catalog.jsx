@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
+import { selectCars, selectLoading } from '../../redux/cars/selectors';
+import Loader from '../Loader/Loader';
 import CarCard from '../CarCard/CarCard';
 import css from './Catalog.module.css';
-import { selectCars, selectLoading } from '../../redux/cars/selectors';
 
 export default function Catalog() {
   const cars = useSelector(selectCars);
@@ -9,9 +10,7 @@ export default function Catalog() {
 
   return (
     <div className={css.wrapper}>
-      {isLoading ? (
-        <p>Loading</p>
-      ) : (
+      {cars.length > 0 && (
         <ul className={css.list}>
           {cars.map(car => {
             return (
@@ -21,6 +20,9 @@ export default function Catalog() {
             );
           })}
         </ul>
+      )}
+      {isLoading && (
+        <Loader />
       )}
     </div>
   );
