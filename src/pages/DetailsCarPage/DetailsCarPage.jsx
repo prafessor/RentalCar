@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCarById } from '../../redux/cars/operations';
 import { selectCar, selectLoading } from '../../redux/cars/selectors';
 import { thousandSeparator } from '../../utils/thousandSeparator';
-import css from './DetailsCarPage.module.css';
+import Loader from "../../components/Loader/Loader";
 import BookingForm from '../../components/BookingForm/BookingForm';
+import css from './DetailsCarPage.module.css';
 
 export default function DetailsCarPage() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function DetailsCarPage() {
   }, [dispatch, id]);
 
   if (isLoading || !car) {
-    return <p>Loading...</p>;
+    return <Loader/>;
   }
 
   const addressArr = car.address.split(',');

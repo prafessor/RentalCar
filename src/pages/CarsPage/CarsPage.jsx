@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCars, fetchMoreCars } from '../../redux/cars/operations';
+import { selectLoading, selectTotalPages } from '../../redux/cars/selectors';
 import Button from "../../components/Button/Button";
 import Catalog from "../../components/Catalog/Catalog";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import css from "./CarsPage.module.css";
-import { selectTotalPages } from '../../redux/cars/selectors';
 
 export default function CarsPage() {
     const dispatch = useDispatch();
     const totaPages = useSelector(selectTotalPages);
     const [page, setPage] = useState(1);
+
+    const isLoading = useSelector(selectLoading);
 
     useEffect(() => {
         dispatch(fetchCars());
@@ -26,7 +28,7 @@ export default function CarsPage() {
             <div className={`container ${css.wrapper}`}>
                 <FilterBar/>
                 <Catalog/>
-                {page < totaPages && <Button className='button_more' onClick={hadleButtonClick}>Load more</Button>}
+                {page < totaPages && !isLoading && <Button className='button_more' onClick={hadleButtonClick}>Load more</Button>}
             </div>
         </section>
     );
