@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toggleFavorite } from '../../redux/cars/slice';
 import Button from '../Button/Button';
 import css from './CarCard.module.css';
 import { thousandSeparator } from '../../utils/thousandSeparator';
 
 export default function CarCard({ car }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     id,
@@ -28,13 +31,27 @@ export default function CarCard({ car }) {
     navigate(`/catalog/${id}`, { replace: true });
   };
 
+  const handleButtonFavoriteClick = () => {
+    dispatch(toggleFavorite(id));
+  };
+
   return (
     <>
       <div className={css.img_container}>
         <img className={css.img} src={img} alt={description} />
-        <button className={css.btn_favorite} type="button">
+        <button
+          className={`${css.btn_favorite} ${car.favorite && css.active}`}
+          type="button"
+          onClick={handleButtonFavoriteClick}
+        >
           <svg width="16" height="16">
-            <use href="/sprite.svg#icon-like"></use>
+            <use
+              href={
+                car.favorite
+                  ? '/sprite.svg#icon-like-active'
+                  : '/sprite.svg#icon-like'
+              }
+            ></use>
           </svg>
         </button>
       </div>
