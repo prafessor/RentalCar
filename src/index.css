@@ -60,3 +60,17 @@ button {
   margin: 0 auto;
   padding: 0 10px;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+
+  background-color: var(--color-steel-grey);
+}

@@ -1,0 +1,63 @@
+.form {
+  margin-bottom: 50px;
+
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.filterContainerBrand {
+  width: 204px;
+}
+
+.filterContainerPrice {
+  width: 196px;
+}
+
+.title {
+  margin-bottom: 8px;
+
+  color: var(--color-grey);
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.distanceInputContainer {
+  display: flex;
+}
+.distanceInputField {
+  font-weight: 500;
+  line-height: 1.25;
+
+  position: relative;
+}
+
+.distanceInput {
+  width: 160px;
+  height: 44px;
+  border: none;
+  border-radius: 12px 0 0 12px;
+  padding: 12px 12px 12px 65px;
+
+  background-color: var(--color-neutral-grey);
+
+  font-weight: 500;
+
+  position: relative;
+}
+
+.distanceInput.right {
+  border-left: 1px solid var(--color-steel-grey);
+  border-radius: 0 12px 12px 0;
+  padding-left: 45px;
+}
+
+.distanceInput:focus {
+  outline: none;
+}
+
+.distanceInputPrefix {
+  position: absolute;
+  top: 12px;
+  left: 24px;
+}

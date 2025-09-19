@@ -1,17 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCars, fetchMoreCars, fetchCarById } from './operations';
+import {
+  fetchCars,
+  fetchMoreCars,
+  fetchCarById,
+  fetchBrands,
+} from './operations';
 
 const slice = createSlice({
   name: 'cars',
   initialState: {
     items: [],
     car: null,
+    brands: [],
     loading: false,
+    loadingBrands: false,
     error: null,
     totalPages: 1,
+    filters: {
+      brand: '',
+      price: '',
+      minMileage: '',
+      maxMileage: '',
+    },
     favoriteCars: [],
   },
   reducers: {
+    setFilters: (state, action) => {
+      state.filters = action.payload;
+    },
     toggleFavorite: (state, action) => {
       const car = state.items.find(car => car.id === action.payload);
 
@@ -80,9 +96,23 @@ const slice = createSlice({
       .addCase(fetchCarById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(fetchBrands.pending, state => {
+        state.loadingBrands = true;
+        state.error = null;
+      })
+      .addCase(fetchBrands.fulfilled, (state, action) => {
+        state.loadingBrands = false;
+        state.brands = action.payload.map(brand => {
+          return { value: brand, label: brand };
+        });
+      })
+      .addCase(fetchBrands.rejected, (state, action) => {
+        state.loadingBrands = false;
+        state.error = action.payload;
       });
   },
 });
 
-export const { toggleFavorite } = slice.actions;
+export const { setFilters, toggleFavorite } = slice.actions;
 export default slice.reducer;
