@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBrands } from '../../redux/cars/operations';
 import {
@@ -39,6 +39,7 @@ export default function FilterBar() {
   const isLoading = useSelector(selectLoadingBrands);
   const settedFilters = useSelector(selectFilters);
   const [searchParams] = useSearchParams();
+  const firstRenderRef = useRef(true);
 
   const { brand, price, minMileage, maxMileage } = filter;
 
@@ -70,8 +71,12 @@ export default function FilterBar() {
       maxMileage: validatedMaxMileage,
     };
 
-    if (isEqualFilters(settedFilters, newFilters)) return;
+    if (
+      firstRenderRef.current ? false : isEqualFilters(settedFilters, newFilters)
+    )
+      return;
 
+    firstRenderRef.current = false;
     setFilter(newFilters);
 
     dispatch(setFilters(newFilters));
@@ -131,6 +136,7 @@ export default function FilterBar() {
         <p className={css.title}>Price/ 1 hour</p>
         <Select
           styles={selectStyles}
+          components={{ DropdownIndicator }}
           name="price"
           options={priceToOption}
           value={price ? { value: price, label: price } : null}
